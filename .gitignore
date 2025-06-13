@@ -1,0 +1,22 @@
+# Backup
+.backup/
+
+# Settings
+.settings/
+
+# Metadata
+.metadata/
+
+# Screenshots
+.screenshots
+
+# Debug
+Debug/
+debug/
+Release/
+release
+
+# Project files
+*.cproject
+*.mxproject
+*.project
