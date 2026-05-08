@@ -49,7 +49,7 @@ The ITM has 32 communication channels. ITM Channel 0 is used for printf-style ou
 
 2. Enable SWV in STM32CubeIDE. Open the Debug Configurations... under the Debug icon (looking as a little beetle). In the Debugger tab, enable Serial Wire Viewer (SWV) and make sure the Core Clock is set to your system clock (which you can find in Device Configuration Tool -> Clock Configuration -> SYSCLK).
 
-3. Click on Debug icon, switch to the Debug perspective, click on Window -> Show View -> SWV -> SWV ITM Data Console to be able to view the SWV output.
+3. Click on Debug icon, switch to the Debug perspective, click on `Window -> Show View -> SWV -> SWV ITM Data Console` to be able to view the SWV output.
 
 4. While the debugger is paused on the first breakpoint, bring up the SWV settings by clicking on the wrench icon in the upper-right corner of the SWV ITM Data Console tab. In the bottom part of the window, under ITM Stimulus Ports, check pin 0. 
 
@@ -57,7 +57,7 @@ The ITM has 32 communication channels. ITM Channel 0 is used for printf-style ou
 
 6. You should see messages printed in the console.
 
-7. You can also monitor the value of the global variable (`count` in the used code)  by clicking on 'Window -> Show View -> Live Expressions, checking the tab and entering the variable name in the 'Expression' column.
+7. You can also monitor the value of the global variable (`count` in the used code) by clicking on `Window -> Show View -> Live Expressions`, checking the tab and entering the variable name in the `Expression` column.
 
 8. Press the Suspend button on the Toolbar to pause the program and the Terminate button to exit the Debug perspective. 
 
@@ -73,7 +73,13 @@ After including `<stdio.h>` and the `__io_putchar` to the code, we can start usi
 If the `syscalls.c` file is missing or not implemented, the entire `_write` function must be overwritten. In this case `ITM_Send Char` is inside this `_write` function, which we insert into the code instead of `__io_putchar`. The other parts of the code are the same.
 
 - **bluepill-plus_swv_advanced**
-This time, the `_write` function was overwritten again and the visibility of the code was somehow improved. LED blinking was also added before the delay to visually show the counting. The counting process can also be shown graphically. To do this, after switching to the Debug perspective, click on Window -> Show View -> SWV -> SWV Data Trace Timeline Graph. Next, click on the wrench icon in the SWV Data Trace Timeline Graph and, under the Comparator block, enter `count` into the 'Var/Addr:' field and check the 'Enable' box. This will allow you to use the already defined global static variable, i.e., `count`, to be monitored in the graphics form. Then, do the same as in point 5 of the [Software Setup](#software-setup) section above, but this time for the 'SWV Data Trace Timeline Graph' tab. You should see the step graph of the `count` variable values printed in the console.
+This time, the `_write` function was overwritten again and the visibility of the code was somehow improved. LED blinking was also added to visually show the counting. The counting process can also be shown graphically. To do this, after switching to the Debug perspective, click on `Window -> Show View -> SWV -> SWV Data Trace Timeline Graph`. Next, click on the wrench icon in the corresponding tab and, under the `Comparator` block, enter `count` into the `Var/Addr:` field and check the `Enable` box. This will allow you to use the already defined global static variable, i.e., `count`, to be monitored in the graphics form. Then, do the same as in point 5 of the [Software Setup](#software-setup) section above, but this time for the `SWV Data Trace Timeline Graph` tab. You should see the step graph of the `count` variable values printed in the console.
+
+> [!NOTE]
+> Thus, it's possible to debug the code and monitor the value of a variable in different ways:
+- The value's change can be shown by an LED. This allows us to see that it has changed, but we don't know its current state
+- The value can be printed to the IDE's console to show its actual value at the current moment in time
+- The value and its changes can be shown on a graph as a function of time
 
 > [!TIP]  
 > To avoid losing the first character of the very first string being printed, a small delay of 0.1 seconds is inserted into the code before the start of the loop.

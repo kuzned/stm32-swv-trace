@@ -118,13 +118,13 @@ int main(void)
   {
     // Increment the counter variable
     count++;
-
+	
+	// Toggle the onboard LED
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
+	
     // Print the value of the counter variable to the console
     // The counter value starts at "1"
     printf("The counter value: %d\n", count);
-
-    // Toggle the onboard LED
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
 
     // Give a delay
     HAL_Delay(1000);
